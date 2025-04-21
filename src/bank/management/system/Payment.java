@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.Date;
-import java.sql.ResultSet;  // Correct import for ResultSet from java.sql
+import java.sql.ResultSet;
 
 
 public class Payment extends JFrame implements ActionListener {
@@ -118,12 +118,12 @@ public class Payment extends JFrame implements ActionListener {
                     return;
                 }
 
-                // Deduct the payment amount from the sender's account
-                Date date = new Date(System.currentTimeMillis());  // Current date in SQL format
+                
+                Date date = new Date(System.currentTimeMillis()); 
                 String query = "INSERT INTO bank (pin, date, type, amount) VALUES ('" + pinnumber + "','" + date + "','Payment','" + amount + "')";
                 conn.s.executeUpdate(query);
 
-                // Add the payment to the recipient's account
+                
                 String recipientQuery = "INSERT INTO bank (pin, date, type, amount) VALUES ('" + recipientPin + "','" + date + "','Deposit','" + amount + "')";
                 conn.s.executeUpdate(recipientQuery);
 
